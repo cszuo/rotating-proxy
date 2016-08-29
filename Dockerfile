@@ -1,7 +1,7 @@
 FROM resin/rpi-raspbian
 MAINTAINER Matthias Kadenbach <matthias.kadenbach@gmail.com>
 
-RUN echo 'deb http://deb.torproject.org/torproject.org trusty main' | tee /etc/apt/sources.list.d/torproject.list
+RUN echo 'deb http://deb.torproject.org/torproject.org wheezy main' | tee /etc/apt/sources.list.d/torproject.list
 RUN gpg --keyserver keys.gnupg.net --recv 886DDD89
 RUN gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
 
@@ -16,7 +16,7 @@ RUN apt-get update && \
 RUN update-rc.d -f tor remove
 RUN update-rc.d -f polipo remove
 
-RUN gem install excon -v 0.44.4
+RUN gem2.1 install excon -v 0.44.4
 
 ADD start.rb /usr/local/bin/start.rb
 RUN chmod +x /usr/local/bin/start.rb
